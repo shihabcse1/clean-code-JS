@@ -291,7 +291,7 @@ addMonthToDate(1, date);
 
 **[⬆ back to top](#table-of-contents)**
 
-### 2.4 Functions should only be one level of abstraction
+### 2.4 Functions should only be one level of abstraction:
 
 Function এ একাধিক abstraction level থাকলে, এটা সাধারণত অনেক করা বুঝায়। কিন্তু মনে রাখতে হবে যে, Function আকারে split করে কাজ করলে reusability এবং testing করা easier হয় ।
 
@@ -361,28 +361,9 @@ function parse(tokens) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Remove duplicate code
+### 2.5 Remove duplicate code
 
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
-
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
-
-Oftentimes you have duplicate code because you have two or more slightly
-different things, that share a lot in common, but their differences force you
-to have two or more separate functions that do much of the same things. Removing
-duplicate code means creating an abstraction that can handle this set of
-different things with just one function/module/class.
-
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the _Classes_ section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
+Duplicate code is bad কারণ আমাদের multiple place এ update করতে হয়
 
 **❌**
 
@@ -500,9 +481,9 @@ createMenu(menuConfig);
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't use flags as function parameters
+### 2.6 Don't use flags as function parameters:
 
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+`flag` user কে বলে যে, function টা একের অধিক কাজ করে, এজন্য এটা parameter হিসেবে থাকা ঠিক না। এক্ষেত্রে code কে split করা ভালো।
 
 **❌**
 
@@ -530,22 +511,9 @@ function createTempFile(name) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid Side Effects (part 1)
+### 2.7 Avoid Side Effects (part 1):
 
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
-
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
-
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
+একটা function একটা value বা values input হিসেবে নেয় এবং ওপর কোনো value বা values return করে। যদি এর থেকে অন্য কিছু করে, তার মানে side effect produce করতেছে। যেমনঃ writing to a file, modifying some global variable, যদি আসলেই file update করতে হয়, তাহলে only one function use করে করতে হবে।
 
 **❌**
 
@@ -579,7 +547,7 @@ console.log(newName); // ['Ryan', 'McDermott'];
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid Side Effects (part 2)
+### 2.8 Avoid Side Effects (part 2)
 
 In JavaScript, some values are unchangeable (immutable) and some are changeable
 (mutable). Objects and arrays are two kinds of mutable values so it's important
@@ -635,17 +603,9 @@ const addItemToCart = (cart, item) => {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't write to global functions
+### 2.9 Don't write to global functions:
 
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+Polluting globals হচ্ছে bad practice কারণ এটা অন্য library এর সাথে clash করতে পারে। Example: `Array.prototype` এই কারণেই শুধু ES2015/ES6 ক্লাস ব্যবহার করে, `Array` global extend করা ভালো।
 
 **❌**
 
@@ -669,11 +629,9 @@ class SuperArray extends Array {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Favor functional programming over imperative programming
+### 2.10 Favor functional programming over imperative programming
 
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages can be cleaner and easier to test.
-Favor this style of programming when you can.
+JavaScript এর functional flavor আছে, এজন্য এগুলো use করা ভালো এবং easily test করা যায়। 
 
 **❌**
 
