@@ -933,19 +933,15 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 
 ## **Objects and Data Structures**
 
-### Use getters and setters
+### 3.1 Use getters and setters
 
-Using getters and setters to access data on objects could be better than simply
-looking for a property on an object. "Why?" you might ask. Well, here's an
-unorganized list of reasons why:
+একটা `property` or an `object` looking up এর চেয়ে `getters` and `setters` use করা ভালো । কারণগুলো হলো:
 
-- When you want to do more beyond getting an object property, you don't have
-  to look up and change every accessor in your codebase.
+- যখন আমি an object's property getting এর থেকেও আরও কিছু করতে চাই, তখন আমাকে codebase এর সকল accessor find and change করতে হবে না।
 - Makes adding validation simple when doing a `set`.
-- Encapsulates the internal representation.
-- Easy to add logging and error handling when getting and setting.
-- You can lazy load your object's properties, let's say getting it from a
-  server.
+- Internal representation কে Encapsulates করতে পারবো। .
+- getter and setter use করলে logging and error handling করা easy
+- যখন ইহা server থেকে পাবো, তখন object's properties lazy load করতে পারবো।
 
 **❌**
 
@@ -994,9 +990,9 @@ account.setBalance(100);
 
 **[⬆ back to top](#table-of-contents)**
 
-### Make objects have private members
+### 3.2 Make objects have private members
 
-This can be accomplished through closures (for ES5 and below).
+এটা closures এর মাধ্যমে অর্জন হতে পারে (for ES5 and below).
 
 **❌**
 
