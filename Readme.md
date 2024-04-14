@@ -195,22 +195,14 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 
 ## **Functions**
 
-### Function arguments (2 or fewer ideally)
+### 2.1 Function arguments (2 or fewer ideally):
 
 Function এ parameterএ limit(highest 2 argument) থাকা important, এতে testing easy হয় কারণ tons of different case of seperate argument নিয়ে চিন্তা করতে হয় না।
 
-To make it obvious what properties the function expects, you can use the ES2015/ES6
-destructuring syntax. This has a few advantages:
+এটির কয়েকটি সুবিধা রয়েছে:
 
-1. When someone looks at the function signature, it's immediately clear what
-   properties are being used.
-2. It can be used to simulate named parameters.
-3. Destructuring also clones the specified primitive values of the argument
-   object passed into the function. This can help prevent side effects. Note:
-   objects and arrays that are destructured from the argument object are NOT
-   cloned.
-4. Linters can warn you about unused properties, which would be impossible
-   without destructuring.
+1. Function এ argument পাঠানো হয় এবং তা destructuring করা হয়, এটা আসলে object এর primitive value গুলোকে clone করে. Note: Destroyed objects and arrays are not cloned from the argument object.
+2. এছাড়া destruction না করা হলে, unused properties এর জন্য Linter warn দিতে পারে না
 
 **❌**
 
@@ -239,13 +231,9 @@ createMenu({
 
 **[⬆ back to top](#table-of-contents)**
 
-### Functions should do one thing
+### 2.2 Functions should do one thing:
 
-This is by far the most important rule in software engineering. When functions
-do more than one thing, they are harder to compose, test, and reason about.
-When you can isolate a function to just one action, it can be refactored
-easily and your code will read much cleaner. If you take nothing else away from
-this guide other than this, you'll be ahead of many developers.
+যার ফলে easily refactor করা যায়, code more clean হয় এবং এটা easier to test.
 
 **❌**
 
@@ -275,7 +263,7 @@ function isActiveClient(client) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Function names should say what they do
+### 2.3 Function names should say what they do:
 
 **❌**
 
@@ -303,11 +291,9 @@ addMonthToDate(1, date);
 
 **[⬆ back to top](#table-of-contents)**
 
-### Functions should only be one level of abstraction
+### 2.4 Functions should only be one level of abstraction
 
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+Function এ একাধিক abstraction level থাকলে, এটা সাধারণত অনেক করা বুঝায়। কিন্তু মনে রাখতে হবে যে, Function আকারে split করে কাজ করলে reusability এবং testing করা easier হয় ।
 
 **❌**
 
