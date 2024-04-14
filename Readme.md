@@ -167,7 +167,7 @@ const user = {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Use default parameters instead of short circuiting or conditionals
+### 1.7 Use default parameters instead of short circuiting or conditionals
 
 Default parameters are often cleaner than short circuiting. Be aware that if you
 use them, your function will only provide default values for `undefined`
@@ -428,7 +428,7 @@ function showEmployeeList(employees) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Set default objects with Object.assign
+### 2.6 Set default objects with Object.assign
 
 **❌**
 
@@ -481,7 +481,7 @@ createMenu(menuConfig);
 
 **[⬆ back to top](#table-of-contents)**
 
-### 2.6 Don't use flags as function parameters:
+### 2.7 Don't use flags as function parameters:
 
 `flag` user কে বলে যে, function টা একের অধিক কাজ করে, এজন্য এটা parameter হিসেবে থাকা ঠিক না। এক্ষেত্রে code কে split করা ভালো।
 
@@ -511,7 +511,7 @@ function createTempFile(name) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### 2.7 Avoid Side Effects (part 1):
+### 2.8 Avoid Side Effects (part 1):
 
 একটা function একটা value বা values input হিসেবে নেয় এবং ওপর কোনো value বা values return করে। যদি এর থেকে অন্য কিছু করে, তার মানে side effect produce করতেছে। যেমনঃ writing to a file, modifying some global variable, যদি আসলেই file update করতে হয়, তাহলে only one function use করে করতে হবে।
 
@@ -547,7 +547,7 @@ console.log(newName); // ['Ryan', 'McDermott'];
 
 **[⬆ back to top](#table-of-contents)**
 
-### 2.8 Avoid Side Effects (part 2)
+### 2.9 Avoid Side Effects (part 2)
 
 In JavaScript, some values are unchangeable (immutable) and some are changeable
 (mutable). Objects and arrays are two kinds of mutable values so it's important
@@ -603,7 +603,7 @@ const addItemToCart = (cart, item) => {
 
 **[⬆ back to top](#table-of-contents)**
 
-### 2.9 Don't write to global functions:
+### 2.10 Don't write to global functions:
 
 Polluting globals হচ্ছে bad practice কারণ এটা অন্য library এর সাথে clash করতে পারে। Example: `Array.prototype` এই কারণেই শুধু ES2015/ES6 ক্লাস ব্যবহার করে, `Array` global extend করা ভালো।
 
@@ -629,9 +629,9 @@ class SuperArray extends Array {
 
 **[⬆ back to top](#table-of-contents)**
 
-### 2.10 Favor functional programming over imperative programming
+### 2.11 Favor functional programming over imperative programming
 
-JavaScript এর functional flavor আছে, এজন্য এগুলো use করা ভালো এবং easily test করা যায়। 
+JavaScript এর functional flavor আছে, এজন্য এগুলো use করা ভালো এবং easily test করা যায়।
 
 **❌**
 
@@ -692,7 +692,7 @@ const totalOutput = programmerOutput.reduce(
 
 **[⬆ back to top](#table-of-contents)**
 
-### Encapsulate conditionals
+### 2.12 Encapsulate conditionals
 
 **❌**
 
@@ -716,7 +716,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid negative conditionals
+### 2.13 Avoid negative conditionals
 
 **❌**
 
@@ -744,7 +744,7 @@ if (isDOMNodePresent(node)) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid conditionals
+### 2.14 Avoid conditionals
 
 This seems like an impossible task. Upon first hearing this, most people say,
 "how am I supposed to do anything without an `if` statement?" The answer is that
@@ -804,7 +804,7 @@ class Cessna extends Airplane {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid type-checking (part 1)
+### 2.15 Avoid type-checking (part 1)
 
 JavaScript is untyped, which means your functions can take any type of argument.
 Sometimes you are bitten by this freedom and it becomes tempting to do
@@ -833,7 +833,7 @@ function travelToTexas(vehicle) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid type-checking (part 2)
+### 2.16 Avoid type-checking (part 2)
 
 If you are working with basic primitive values like strings and integers,
 and you can't use polymorphism but you still feel the need to type-check,
@@ -870,7 +870,7 @@ function combine(val1, val2) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't over-optimize
+### 2.16 Don't over-optimize
 
 Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
 times, if you are optimizing then you are just wasting your time. [There are good
@@ -898,7 +898,7 @@ for (let i = 0; i < list.length; i++) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Remove dead code
+### 2.17 Remove dead code
 
 Dead code is just as bad as duplicate code. There's no reason to keep it in
 your codebase. If it's not being called, get rid of it! It will still be safe
