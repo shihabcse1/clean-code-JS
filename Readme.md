@@ -21,7 +21,7 @@ Clean code হচ্ছে code, যেটা readable, reusable, refactorable
 
 ## **Variables**
 
-### Use meaningful and pronounceable variable names:
+### 1.1 Use meaningful and pronounceable variable names:
 
 **❌**
 
@@ -37,7 +37,9 @@ const currentDate = moment().format("YYYY/MM/DD");
 
 **[⬆ back to top](#table-of-contents)**
 
-### Use the same vocabulary for the same type of variable
+### 1.2 Use the same vocabulary for the same type of variable:
+
+আমরা জানি সবই আসলে info বা data, inside user.
 
 **❌**
 
@@ -55,7 +57,7 @@ getUser();
 
 **[⬆ back to top](#table-of-contents)**
 
-### Use searchable names
+### 1.3 Use readable and searchable names
 
 Truth is - আমরা code লিখার চেয়ে code read করি বেশি। Tools like
 [buddy.js](https://github.com/danielstjules/buddy.js) and
@@ -65,46 +67,49 @@ can help identify unnamed constants.
 **❌**
 
 ```javascript
-// What the heck is 86400000 for?
-setTimeout(blastOff, 86400000);
+// What the heck is 525600 for?
+for (let i = 0; i < 525600; i++) {
+  runCornJob();
+}
 ```
 
 **✅**
 
 ```javascript
 // Declare them as capitalized named constants.
-const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;
-
-setTimeout(blastOff, MILLISECONDS_PER_DAY);
+const MINUTES_IN_A_YEAR = 525600;
+for (let i = 0; i < MINUTES_IN_A_YEAR; i++) {
+  runCornJob();
+}
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
-### Use explanatory variables
+### 1.4 Use explanatory variables
 
 **❌**
 
 ```javascript
-const address = "One Infinite Loop, Cupertino 95014";
-const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+const cityStateRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
 saveCityZipCode(
-  address.match(cityZipCodeRegex)[1],
-  address.match(cityZipCodeRegex)[2]
+  cityStateRegex.match(cityStateRegex)[1],
+  cityStateRegex.match(cityStateRegex)[2]
 );
 ```
 
 **✅**
 
 ```javascript
-const address = "One Infinite Loop, Cupertino 95014";
-const cityZipCodeRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
-const [_, city, zipCode] = address.match(cityZipCodeRegex) || [];
-saveCityZipCode(city, zipCode);
+const cityStateRegex = /^[^,\\]+[,\\\s]+(.+?)\s*(\d{5})?$/;
+const match = cityStateRegex.match(cityStateRegex);
+const city = match[1];
+const state = match[2];
+saveCityZipCode(city, state);
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid Mental Mapping
+### 1.5 Avoid Mental Mapping
 
 Explicit is better than implicit.
 
@@ -115,7 +120,6 @@ const locations = ["Austin", "New York", "San Francisco"];
 locations.forEach((l) => {
   doStuff();
   doSomeOtherStuff();
-  // ...
   // ...
   // ...
   // Wait, what is `l` for again?
@@ -132,14 +136,13 @@ locations.forEach((location) => {
   doSomeOtherStuff();
   // ...
   // ...
-  // ...
   dispatch(location);
 });
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't add unneeded context
+### 1.6 Don't add unneeded context
 
 If your class/object name tells you something, don't repeat that in your
 variable name.
@@ -147,29 +150,19 @@ variable name.
 **❌**
 
 ```javascript
-const Car = {
-  carMake: "Honda",
-  carModel: "Accord",
-  carColor: "Blue",
+const user = {
+  userId: "12",
+  userName: "Alex",
 };
-
-function paintCar(car, color) {
-  car.carColor = color;
-}
 ```
 
 **✅**
 
 ```javascript
-const Car = {
-  make: "Honda",
-  model: "Accord",
-  color: "Blue",
+const user = {
+  id: "12",
+  name: "Alex",
 };
-
-function paintCar(car, color) {
-  car.color = color;
-}
 ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -204,20 +197,7 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 
 ### Function arguments (2 or fewer ideally)
 
-Limiting the amount of function parameters is incredibly important because it
-makes testing your function easier. Having more than three leads to a
-combinatorial explosion where you have to test tons of different cases with
-each separate argument.
-
-One or two arguments is the ideal case, and three should be avoided if possible.
-Anything more than that should be consolidated. Usually, if you have
-more than two arguments then your function is trying to do too much. In cases
-where it's not, most of the time a higher-level object will suffice as an
-argument.
-
-Since JavaScript allows you to make objects on the fly, without a lot of class
-boilerplate, you can use an object if you are finding yourself needing a
-lot of arguments.
+Function এ parameterএ limit(highest 2 argument) থাকা important, এতে testing easy হয় কারণ tons of different case of seperate argument নিয়ে চিন্তা করতে হয় না।
 
 To make it obvious what properties the function expects, you can use the ES2015/ES6
 destructuring syntax. This has a few advantages:
