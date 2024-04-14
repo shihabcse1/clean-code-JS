@@ -1032,12 +1032,9 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 ## **Classes**
 
-### Prefer ES2015/ES6 classes over ES5 plain functions
+### 4.1 Prefer ES2015/ES6 classes over ES5 plain functions
 
-It's very difficult to get readable class inheritance, construction, and method
-definitions for classical ES5 classes. If you need inheritance (and be aware
-that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
-classes until you find yourself needing larger and more complex objects.
+`class` use করা লাগলে ES6 এর `function` এর পরিবর্তে `class` use করা উচিত। Especially যখন `inheritance` লাগবে তখন।
 
 **❌**
 
@@ -1117,13 +1114,10 @@ class Human extends Mammal {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Use method chaining
+### 4.2 Use method chaining
 
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+এটা code কে expressive, and less verbose করে। অনেক library(jQuery and Lodash) তেই আমরা এটা দেখি।
+class functions এর মধ্যে, simply every function এর শেষে return `this`, তাহলেই class method chain করা যাবে। Note: এটা আসলে easy concept। function টা `this` return না করলে `undefine` return করে।
 
 **❌**
 
@@ -1197,7 +1191,7 @@ const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 
 **[⬆ back to top](#table-of-contents)**
 
-### Prefer composition over inheritance
+### 4.3 Prefer composition over inheritance
 
 As stated famously in [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
 you should prefer composition over inheritance where you can. There are lots of
