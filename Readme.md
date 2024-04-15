@@ -2007,7 +2007,7 @@ class Alpaca {}
 
 ### 10.2 Function callers and callees should be close:
 
-যদি একটা function ওপর একটা function কে call করে, তাহলে source file এ তাদের vertically close রাখতে হয়। Ideally, `caller(যে call করতেছে)` কে `callee(যাকে call করতেছে)` এর উপরে রাখতে হয়।  আমরা code কে top-to-bottom পড়ি, newspaper এর মতো। 
+যদি একটা function ওপর একটা function কে call করে, তাহলে source file এ তাদের vertically close রাখতে হয়। Ideally, `caller(যে call করতেছে)` কে `callee(যাকে call করতেছে)` এর উপরে রাখতে হয়। আমরা code কে top-to-bottom পড়ি, newspaper এর মতো।
 
 **❌**
 
@@ -2093,9 +2093,9 @@ review.perfReview();
 
 ## **Comments**
 
-### Only comment things that have business logic complexity.
+### 10.3 Only comment things that have business logic complexity.
 
-Comments are an apology, not a requirement. Good code _mostly_ documents itself.
+Comments কোনো requirement না, এটা একটা apology. Good code _mostly_ documents itself.
 
 **❌**
 
@@ -2138,9 +2138,9 @@ function hashIt(data) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't leave commented out code in your codebase
+### 10.4 Don't leave commented out code in your codebase
 
-Version control exists for a reason. Leave old code in your history.
+Version control এই কাজই করতেছে।
 
 **❌**
 
@@ -2159,10 +2159,9 @@ doStuff();
 
 **[⬆ back to top](#table-of-contents)**
 
-### Don't have journal comments
+### 10.4 Don't have journal comments
 
-Remember, use version control! There's no need for dead code, commented code,
-and especially journal comments. Use `git log` to get history!
+Version control এই কাজই করতেছে। Use `git log` to get history!
 
 **❌**
 
@@ -2188,10 +2187,9 @@ function combine(a, b) {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Avoid positional markers
+### 10.5 Avoid positional markers
 
-They usually just add noise. Let the functions and variable names along with the
-proper indentation and formatting give the visual structure to your code.
+They usually just add noise.
 
 **❌**
 
