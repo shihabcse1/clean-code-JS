@@ -1964,20 +1964,12 @@ getdata()
 
 ## **Formatting**
 
-Formatting is subjective. Like many rules herein, there is no hard and fast
-rule that you must follow. The main point is DO NOT ARGUE over formatting.
-There are [tons of tools](https://standardjs.com/rules.html) to automate this.
-Use one! It's a waste of time and money for engineers to argue over formatting.
+Formatting is subjective. মূল কথা হচ্ছে, team এর মধ্যে code টা consistent রাখা।
+Formatting automate করার জন্য [tons of tools](https://standardjs.com/rules.html) আছে।
 
-For things that don't fall under the purview of automatic formatting
-(indentation, tabs vs. spaces, double vs. single quotes, etc.) look here
-for some guidance.
+### 10.1 Use consistent capitalization
 
-### Use consistent capitalization
-
-JavaScript is untyped, so capitalization tells you a lot about your variables,
-functions, etc. These rules are subjective, so your team can choose whatever
-they want. The point is, no matter what you all choose, just be consistent.
+যেহেতু JavaScript untyped, তাই capitalization অনেক কিছু বলে `variable` ও `function` সম্পর্কে।
 
 **❌**
 
