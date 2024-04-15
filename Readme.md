@@ -1967,7 +1967,7 @@ getdata()
 Formatting is subjective. মূল কথা হচ্ছে, team এর মধ্যে code টা consistent রাখা।
 Formatting automate করার জন্য [tons of tools](https://standardjs.com/rules.html) আছে।
 
-### 10.1 Use consistent capitalization
+### 10.1 Use consistent capitalization:
 
 যেহেতু JavaScript untyped, তাই capitalization অনেক কিছু বলে `variable` ও `function` সম্পর্কে।
 
@@ -2005,11 +2005,9 @@ class Alpaca {}
 
 **[⬆ back to top](#table-of-contents)**
 
-### Function callers and callees should be close
+### 10.2 Function callers and callees should be close:
 
-If a function calls another, keep those functions vertically close in the source
-file. Ideally, keep the caller right above the callee. We tend to read code from
-top-to-bottom, like a newspaper. Because of this, make your code read that way.
+যদি একটা function ওপর একটা function কে call করে, তাহলে source file এ তাদের vertically close রাখতে হয়। Ideally, `caller(যে call করতেছে)` কে `callee(যাকে call করতেছে)` এর উপরে রাখতে হয়।  আমরা code কে top-to-bottom পড়ি, newspaper এর মতো। 
 
 **❌**
 
