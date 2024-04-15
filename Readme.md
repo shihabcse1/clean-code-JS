@@ -166,12 +166,9 @@ const user = {
 
 **[⬆ back to top](#table-of-contents)**
 
-### 1.7 Use default parameters instead of short circuiting or conditionals
+### 1.7 Use default parameters instead of short circuiting or conditionals:
 
-Default parameters are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
+Default parameters গুলো short circuiting এর চেয়ে cleaner. তাই undefined arguments এর জন্য default values provide এর ক্ষেত্রে সতর্ক থাকতে হবে। অন্যান্য "falsy" values values যেমনঃ `''`, `""`, `false`, `null`, `0`, and `NaN`, will not be replaced by a default value.
 
 **❌**
 
