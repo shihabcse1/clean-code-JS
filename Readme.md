@@ -1260,16 +1260,9 @@ class Employee {
 
 ## **SOLID**
 
-### Single Responsibility Principle (SRP)
+### 6.1 Single Responsibility Principle (SRP)
 
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+এটা বলে যে - "একটা `class` change করার জন্য একটাই reason থাকবে". একটা class change করতে অনেক reason থাকলে, এটা change করতে অনেক সময়ও লাগবে। একটা class এ অনেক বেশি functionalities থাকলে, এটা আরও কোন কোন dependent module এ affect করবে তা বোঝাও কষ্টকর। এটা developer কে যা build করতেছে তার context এবং responsibility বুঝতে এবং কখন তা change করা প্রয়োজন তা বুঝতে সাহায্য করে।
 
 **❌**
 
@@ -1320,12 +1313,45 @@ class UserSettings {
 
 **[⬆ back to top](#table-of-contents)**
 
-### Open/Closed Principle (OCP)
+### 6.2 Open/Closed Principle (OCP)
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+এটা বলে যে - "software entities (classes, modules, functions,
+etc.) should be open for extension, but closed for modification." এই principle বলে যে - existing code না করেই new functionalites add করতে হবে।
+
+**❌**
+
+```javascript
+let icecreamFlavor = ["chocolate", "vanilla"];
+let icecreamMaker = {
+  makeIceCream(flavor) {
+    if (iceCreamFlavors.indexof(flavor) > -1) {
+      console.log("You have an icecream");
+    } else {
+      console.log("No Icecream for you");
+    }
+  },
+};
+export default icecreamMaker;
+```
+
+**✅**
+
+```javascript
+let icecreamFlavor = ["chocolate", "vanilla"];
+let icecreamMaker = {
+  makeIceCream(flavor) {
+    if (iceCreamFlavors.indexof(flavor) > -1) {
+      console.log("You have an icecream");
+    } else {
+      console.log("No Icecream for you");
+    }
+  },
+  addFlavor(flavor) {
+    iceCreamFlavors.push(flavor);
+  },
+};
+export default icecreamMaker;
+```
 
 **❌**
 
