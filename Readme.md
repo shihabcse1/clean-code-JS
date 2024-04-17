@@ -13,6 +13,8 @@
 9. [Error Handling](#error-handling)
 10. [Formatting](#formatting)
 11. [Comments](#comments)
+12. [DRY](#dry)
+13. [KISS](#kiss)
 
 ## Introduction
 
