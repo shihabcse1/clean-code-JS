@@ -1353,170 +1353,50 @@ let icecreamMaker = {
 export default icecreamMaker;
 ```
 
-**❌**
-
-```javascript
-class AjaxAdapter extends Adapter {
-  constructor() {
-    super();
-    this.name = "ajaxAdapter";
-  }
-}
-
-class NodeAdapter extends Adapter {
-  constructor() {
-    super();
-    this.name = "nodeAdapter";
-  }
-}
-
-class HttpRequester {
-  constructor(adapter) {
-    this.adapter = adapter;
-  }
-
-  fetch(url) {
-    if (this.adapter.name === "ajaxAdapter") {
-      return makeAjaxCall(url).then((response) => {
-        // transform response and return
-      });
-    } else if (this.adapter.name === "nodeAdapter") {
-      return makeHttpCall(url).then((response) => {
-        // transform response and return
-      });
-    }
-  }
-}
-
-function makeAjaxCall(url) {
-  // request and return promise
-}
-
-function makeHttpCall(url) {
-  // request and return promise
-}
-```
-
-**✅**
-
-```javascript
-class AjaxAdapter extends Adapter {
-  constructor() {
-    super();
-    this.name = "ajaxAdapter";
-  }
-
-  request(url) {
-    // request and return promise
-  }
-}
-
-class NodeAdapter extends Adapter {
-  constructor() {
-    super();
-    this.name = "nodeAdapter";
-  }
-
-  request(url) {
-    // request and return promise
-  }
-}
-
-class HttpRequester {
-  constructor(adapter) {
-    this.adapter = adapter;
-  }
-
-  fetch(url) {
-    return this.adapter.request(url).then((response) => {
-      // transform response and return
-    });
-  }
-}
-```
-
 **[⬆ back to top](#table-of-contents)**
 
-### Liskov Substitution Principle (LSP)
+### 6.3 Liskov Substitution Principle (LSP)
 
-This is a scary term for a very simple concept. It's formally defined as "If S
-is a subtype of T, then objects of type T may be replaced with objects of type S
-(i.e., objects of type S may substitute objects of type T) without altering any
-of the desirable properties of that program (correctness, task performed,
-etc.)." That's an even scarier definition.
-
-The best explanation for this is if you have a parent class and a child class,
-then the base class and child class can be used interchangeably without getting
-incorrect results. This might still be confusing, so let's take a look at the
-classic Square-Rectangle example. Mathematically, a square is a rectangle, but
-if you model it using the "is-a" relationship via inheritance, you quickly
-get into trouble.
+Substitution মানে 'প্রতিস্থাপন'। এই principle বলে - "child class এর কখনো parent class এর 'type definition' and 'property' break করা উচিত নয়"
+এটা আসলে inheritance এর ক্ষেত্রে use হচ্ছে।
 
 **❌**
 
 ```javascript
 class Rectangle {
-  constructor() {
-    this.width = 0;
-    this.height = 0;
-  }
-
-  setColor(color) {
-    // ...
-  }
-
-  render(area) {
-    // ...
-  }
-
-  setWidth(width) {
+  constructor(width, height) {
     this.width = width;
-  }
-
-  setHeight(height) {
     this.height = height;
   }
 
-  getArea() {
+  area() {
     return this.width * this.height;
   }
 }
 
 class Square extends Rectangle {
-  setWidth(width) {
-    this.width = width;
-    this.height = width;
-  }
-
-  setHeight(height) {
-    this.width = height;
-    this.height = height;
+  constructor(sideLength) {
+    super(sideLength, sideLength);
   }
 }
 
-function renderLargeRectangles(rectangles) {
-  rectangles.forEach((rectangle) => {
-    rectangle.setWidth(4);
-    rectangle.setHeight(5);
-    const area = rectangle.getArea(); // ❌ Returns 25 for Square. Should be 20.
-    rectangle.render(area);
-  });
+function calculateArea(rectangle) {
+  return rectangle.area();
 }
 
-const rectangles = [new Rectangle(), new Rectangle(), new Square()];
-renderLargeRectangles(rectangles);
+const rectangle = new Rectangle(4, 5);
+console.log(calculateArea(rectangle)); // Output: 20
+
+const square = new Square(4);
+console.log(calculateArea(square)); // Output: 16 (Incorrect! Should be 16, but returns 20)
 ```
 
 **✅**
 
 ```javascript
 class Shape {
-  setColor(color) {
-    // ...
-  }
-
-  render(area) {
-    // ...
+  area() {
+    throw new Error("This method should be overridden");
   }
 }
 
@@ -1527,114 +1407,217 @@ class Rectangle extends Shape {
     this.height = height;
   }
 
-  getArea() {
+  area() {
     return this.width * this.height;
   }
 }
 
 class Square extends Shape {
-  constructor(length) {
+  constructor(sideLength) {
     super();
-    this.length = length;
+    this.sideLength = sideLength;
   }
 
-  getArea() {
-    return this.length * this.length;
+  area() {
+    return this.sideLength ** 2;
   }
 }
 
-function renderLargeShapes(shapes) {
-  shapes.forEach((shape) => {
-    const area = shape.getArea();
-    shape.render(area);
-  });
+function calculateArea(shape) {
+  return shape.area();
 }
 
-const shapes = [new Rectangle(4, 5), new Rectangle(4, 5), new Square(5)];
-renderLargeShapes(shapes);
+const rectangle = new Rectangle(4, 5);
+console.log(calculateArea(rectangle)); // Output: 20
+
+const square = new Square(4);
+console.log(calculateArea(square)); // Output: 16
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
-### Interface Segregation Principle (ISP)
+### 6.4 Interface Segregation Principle (ISP)
 
-JavaScript doesn't have interfaces so this principle doesn't apply as strictly
-as others. However, it's important and relevant even with JavaScript's lack of
-type system.
-
-ISP states that "Clients should not be forced to depend upon interfaces that
-they do not use." Interfaces are implicit contracts in JavaScript because of
-duck typing.
-
-A good example to look at that demonstrates this principle in JavaScript is for
-classes that require large settings objects. Not requiring clients to setup
-huge amounts of options is beneficial, because most of the time they won't need
-all of the settings. Making them optional helps prevent having a
-"fat interface".
+Segregation মানে 'পৃথকীকরণ'। এই principle এর মূল কথা হলো - "interface divide করে করে ছোট করে ফেলতে হবে। মানে interface এর কোনো method কে implement করতে আমাদের যাতে বাধ্য করা না হয়"
+আমরা জানি, interface এর মধ্যে যে method গুলো থাকে সেগুলোর body থাকে না, এবং ওই interface গুলোকে যারা implement করে, তাদেরকে ওই implementation গুলোর definition দিতে হয়।
 
 **❌**
 
 ```javascript
-class DOMTraverser {
-  constructor(settings) {
-    this.settings = settings;
-    this.setup();
+class Printer {
+  constructor() {}
+
+  print() {
+    throw new Error("Not implemented");
   }
 
-  setup() {
-    this.rootNode = this.settings.rootNode;
-    this.settings.animationModule.setup();
-  }
-
-  traverse() {
-    // ...
+  scan() {
+    throw new Error("Not implemented");
   }
 }
 
-const $ = new DOMTraverser({
-  rootNode: document.getElementsByTagName("body"),
-  animationModule() {}, // Most of the time, we won't need to animate when traversing.
-  // ...
-});
+class SimplePrinter extends Printer {
+  constructor() {
+    super();
+  }
+
+  print() {
+    console.log("Printing...");
+  }
+}
+
+class AdvancedPrinter extends Printer {
+  constructor() {
+    super();
+  }
+
+  print() {
+    console.log("Printing...");
+  }
+
+  scan() {
+    console.log("Scanning...");
+  }
+}
+
+const simplePrinter = new SimplePrinter();
+simplePrinter.print(); // Output: Printing...
+// simplePrinter.scan(); // Error: Not implemented
+
+const advancedPrinter = new AdvancedPrinter();
+advancedPrinter.print(); // Output: Printing...
+advancedPrinter.scan(); // Output: Scanning...
 ```
 
 **✅**
 
 ```javascript
-class DOMTraverser {
-  constructor(settings) {
-    this.settings = settings;
-    this.options = settings.options;
-    this.setup();
-  }
+class Print {
+  constructor() {}
 
-  setup() {
-    this.rootNode = this.settings.rootNode;
-    this.setupOptions();
-  }
-
-  setupOptions() {
-    if (this.options.animationModule) {
-      // ...
-    }
-  }
-
-  traverse() {
-    // ...
+  print() {
+    throw new Error('Not implemented');
   }
 }
 
-const $ = new DOMTraverser({
-  rootNode: document.getElementsByTagName("body"),
-  options: {
-    animationModule() {},
-  },
-});
+class Scan {
+  constructor() {}
+
+  scan() {
+    throw new Error('Not implemented');
+  }
+}
+
+class SimplePrinter extends Print {
+  constructor() {
+    super();
+  }
+
+  print() {
+    console.log('Printing...');
+  }
+}
+
+class AdvancedPrinter extends Print, Scan {
+  constructor() {
+    super();
+  }
+
+  print() {
+    console.log('Printing...');
+  }
+
+  scan() {
+    console.log('Scanning...');
+  }
+}
+
+const simplePrinter = new SimplePrinter();
+simplePrinter.print(); // Output: Printing...
+// simplePrinter.scan(); // Error: scan is not a function
+
+const advancedPrinter = new AdvancedPrinter();
+advancedPrinter.print(); // Output: Printing...
+advancedPrinter.scan(); // Output: Scanning...
+
+```
+
+**❌**
+
+```typescript
+interface Worker {
+  work(): void;
+  takeBreak(): void;
+}
+
+class Developer implements Worker {
+  work() {
+    console.log("Developer is working...");
+  }
+
+  takeBreak() {
+    console.log("Developer is taking a break...");
+  }
+}
+
+class Robot implements Worker {
+  work() {
+    console.log("Robot is working...");
+  }
+
+  takeBreak() {
+    console.log("Robot does not take breaks...");
+  }
+}
+
+const developer = new Developer();
+developer.work(); // Output: Developer is working...
+developer.takeBreak(); // Output: Developer is taking a break...
+
+const robot = new Robot();
+robot.work(); // Output: Robot is working...
+robot.takeBreak(); // Output: Robot does not take breaks...
+```
+
+**✅**
+
+```typescript
+interface Workable {
+  work(): void;
+}
+
+interface Breakable {
+  takeBreak(): void;
+}
+
+class Developer implements Workable, Breakable {
+  work() {
+    console.log("Developer is working...");
+  }
+
+  takeBreak() {
+    console.log("Developer is taking a break...");
+  }
+}
+
+class Robot implements Workable {
+  work() {
+    console.log("Robot is working...");
+  }
+}
+
+const developer = new Developer();
+developer.work(); // Output: Developer is working...
+developer.takeBreak(); // Output: Developer is taking a break...
+
+const robot = new Robot();
+robot.work(); // Output: Robot is working...
+// robot.takeBreak(); // Error: Property 'takeBreak' does not exist on type 'Robot'.
 ```
 
 **[⬆ back to top](#table-of-contents)**
 
-### Dependency Inversion Principle (DIP)
+### 6.5 Dependency Inversion Principle (DIP)
 
 This principle states two essential things:
 
@@ -1643,19 +1626,7 @@ This principle states two essential things:
 2. Abstractions should not depend upon details. Details should depend on
    abstractions.
 
-This can be hard to understand at first, but if you've worked with AngularJS,
-you've seen an implementation of this principle in the form of Dependency
-Injection (DI). While they are not identical concepts, DIP keeps high-level
-modules from knowing the details of its low-level modules and setting them up.
-It can accomplish this through DI. A huge benefit of this is that it reduces
-the coupling between modules. Coupling is a very bad development pattern because
-it makes your code hard to refactor.
-
-As stated previously, JavaScript doesn't have interfaces so the abstractions
-that are depended upon are implicit contracts. That is to say, the methods
-and properties that an object/class exposes to another object/class. In the
-example below, the implicit contract is that any Request module for an
-`InventoryTracker` will have a `requestItems` method.
+একটা class ওপর একটা class এর উপর পুরোপুরি depended হতে পারবে না। মানে এই principle বলে, আমাদের `tightly coupled code` লিখা যাবে না।
 
 **❌**
 
