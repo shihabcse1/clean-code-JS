@@ -1318,7 +1318,7 @@ class UserSettings {
 ### 6.2 Open/Closed Principle (OCP)
 
 এটা বলে যে - "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." এই principle বলে যে - existing code না করেই new functionalites add করতে হবে।
+etc.) should be open for extension, but closed for modification." এই principle বলে যে - existing code modify না করেই new functionalites add করতে হবে।
 
 **❌**
 
