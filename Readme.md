@@ -2223,60 +2223,100 @@ const actions = function () {
 
 ## **DRY**
 
-DRY - Don't Repeat Youself. এই principle মূলত repetition reduce করে। এটা achieve করার কিছু way হলো: 
+DRY - Don't Repeat Youself. এই principle মূলত repetition reduce করে। এটা achieve করার কিছু way হলো:
 
-- Common functionalities এর জন্য separate module করা। 
-- Repetitive value store এর জন্য variable use করা। 
-- Code copying and pasting avoid করা। 
+- Common functionalities এর জন্য separate module করা।
+- Repetitive value store এর জন্য variable use করা।
+- Code copying and pasting avoid করা।
 
 **❌**
 
-```javascript 
+```javascript
 // Not DRY
-function addNumbers(a, b){
-    console.log(a + b);
+function addNumbers(a, b) {
+  console.log(a + b);
 }
 
-function subtractNumbers(a, b){
-    console.log(a - b);
+function subtractNumbers(a, b) {
+  console.log(a - b);
 }
 ```
+
 **✅**
 
 ```javascript
 // DRY
-function calculateNumbers(a, b, operator){
-    if(operator === '+'){
-        console.log(a + b);
-    } else if (operator === '-'){
-        console.log(a - b);
-    }
+function calculateNumbers(a, b, operator) {
+  if (operator === "+") {
+    console.log(a + b);
+  } else if (operator === "-") {
+    console.log(a - b);
+  }
 }
 ```
+
 **✅**
 
 ```javascript
 // More DRY
 function add(a, b) {
-    return a + b;
+  return a + b;
 }
 
 function subtract(a, b) {
-    return a - b;
+  return a - b;
 }
 
 function calculateNumbers(a, b, operator) {
-    let result;
-    if (operator === '+') {
-        result = add(a, b);
-    } else if (operator === '-') {
-        result = subtract(a, b);
-    } else {
-        throw new Error('Unsupported operator');
-    }
-    console.log(result);
+  let result;
+  if (operator === "+") {
+    result = add(a, b);
+  } else if (operator === "-") {
+    result = subtract(a, b);
+  } else {
+    throw new Error("Unsupported operator");
+  }
+  console.log(result);
 }
+```
 
+**[⬆ back to top](#table-of-contents)**
+
+## **KISS**
+
+KISS - Keep It Simple, Stupid. এই principle code simple এবং understandable রাখার ব্যাপারে emphasize করে। এটা achieve করার কিছু way হলো:
+
+- Clear, descriptive variable and function names use করা।
+- Complex tasks কে smaller, simpler tasks এ break down করা।
+- Over-engineering solutions avoid করা।
+
+**❌**
+
+```javascript
+// Not KISS
+function calculateAreaOfCircle(radius) {
+  let pi = 3.1416;
+  let area = pi * radius * radius;
+  return area;
+}
+```
+
+**✅**
+
+```javascript
+// KISS
+function calculateAreaOfCircle(radius) {
+  return Math.PI * radius * radius;
+}
+```
+
+**✅**
+
+```javascript
+// More KISS: Avoids unnecessary variable assignments
+function calculateAreaOfCircle(radius) {
+  return Math.PI * Math.pow(radius, 2);
+}
 ```
 
 **[⬆ back to top](#table-of-contents)**
