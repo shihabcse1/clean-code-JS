@@ -1713,7 +1713,7 @@ inventoryTracker.requestItems();
 
 ## **Testing**
 
-এটা mean করে program এ যদি কোনো ভুল থাকে তাহলে টা runtime এ successfully identified হয়েছে। এটা stack trace এর মাধ্যমে console এ function execution, killing the process (in Node) ইত্যাদি notify করে। This means that in addition to having a great testing framework, you also need to use a
+এটা mean করে program এ যদি কোনো ভুল থাকে তাহলে টা runtime এ successfully identified হয়েছে। In addition to having a great testing framework, you also need to use a
 [good coverage tool](https://gotwarlost.github.io/istanbul/).
 
 test না লিখার কোনো excuse নাই। কিছু JS test framwork হলো: [plenty of good JS test frameworks](https://jstherightway.org/#testing-tools)। আমাদের উচিত প্রত্যেক new feature/module এর জন্য test লেখা।
@@ -1777,7 +1777,7 @@ describe("MomentJS", () => {
 
 ### 8.1 Use Promises, not callbacks
 
-Callbacks আসলে clean না, এটা callback hell create করতে পারে। ES2015/ES6 Promises হচ্ছে build-in global type. 
+Callbacks আসলে clean না, এটা callback hell create করতে পারে। ES2015/ES6 Promises হচ্ছে build-in global type.
 
 **❌**
 
@@ -1825,7 +1825,7 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
 
 ### 8.2 Async/Await are even cleaner than Promises
 
-Promises এর চেয়েও বেশি cleaner solution হচ্ছে ES2017/ES8 এর `async` and `await`. 
+Promises এর চেয়েও বেশি cleaner solution হচ্ছে ES2017/ES8 এর `async` and `await`.
 
 **❌**
 
@@ -1868,19 +1868,11 @@ getCleanCodeArticle();
 
 ## **Error Handling**
 
-Thrown errors are a good thing! They mean the runtime has successfully
-identified when something in your program has gone wrong and it's letting
-you know by stopping function execution on the current stack, killing the
-process (in Node), and notifying you in the console with a stack trace.
+Thrown errors are a good thing! কারণ program এ কোনো কিছু wrong হইলে runtime এ successfully identify করা যায়। এটা আমাদের বলে যে, current stack এ function টার execution বন্ধ আছে, killing the process (in Node) এবং console এর মাধ্যমে stack trace notify করে।
 
-### Don't ignore caught errors
+### 9.1 Don't ignore caught errors
 
-Doing nothing with a caught error doesn't give you the ability to ever fix
-or react to said error. Logging the error to the console (`console.log`)
-isn't much better as often times it can get lost in a sea of things printed
-to the console. If you wrap any bit of code in a `try/catch` it means you
-think an error may occur there and therefore you should have a plan,
-or create a code path, for when it occurs.
+Logging the error চেয়ে `console.log` অনেক ভালো। যদি any bit of code কে দিয়ে wrap করা হয়, তার মানে - "আপনি মনে করেন একটা error ঘটতে পারে, সুতরাং আপনার একটা plan থাকা উচিত বা আপনার একটা code path create করা উচিত।"  
 
 **❌**
 
@@ -1908,10 +1900,9 @@ try {
 }
 ```
 
-### Don't ignore rejected promises
+### 9.2 Don't ignore rejected promises
 
-For the same reason you shouldn't ignore caught errors
-from `try/catch`.
+এই একই reason এ, `try/catch` error caught করলে ignore করা উচিত না।
 
 **❌**
 
