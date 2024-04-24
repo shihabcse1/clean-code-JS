@@ -15,6 +15,7 @@
 11. [Comments](#comments)
 12. [DRY](#dry)
 13. [KISS](#kiss)
+14. [YAGNI](#yagni)
 
 ## Introduction
 
@@ -2223,11 +2224,11 @@ const actions = function () {
 
 ## **DRY**
 
-DRY - Don't Repeat Youself. এই principle মূলত repetition reduce করে। এটা achieve করার কিছু way হলো:
+DRY - "Don't Repeat Youself". এই principle মূলত repetition reduce করে। এটা achieve করার কিছু way হলো:
 
-- Common functionalities এর জন্য separate module করা।
-- Repetitive value store এর জন্য variable use করা।
-- Code copying and pasting avoid করা।
+- Common functionalities এর জন্য separate module করা
+- Repetitive value store এর জন্য variable use করা
+- Code copying and pasting avoid করা
 
 **❌**
 
@@ -2284,11 +2285,11 @@ function calculateNumbers(a, b, operator) {
 
 ## **KISS**
 
-KISS - Keep It Simple, Stupid. এই principle code simple এবং understandable রাখার ব্যাপারে emphasize করে। এটা achieve করার কিছু way হলো:
+KISS - "Keep It Simple, Stupid". এই principle code simple এবং understandable রাখার ব্যাপারে emphasize করে। এটা achieve করার কিছু way হলো:
 
-- Clear, descriptive variable and function names use করা।
-- Complex tasks কে smaller, simpler tasks এ break down করা।
-- Over-engineering solutions avoid করা।
+- Clear, descriptive variable and function names use করা
+- Complex tasks কে smaller, simpler tasks এ break down করা
+- Over-engineering solutions avoid করা
 
 **❌**
 
@@ -2316,6 +2317,36 @@ function calculateAreaOfCircle(radius) {
 // More KISS: Avoids unnecessary variable assignments
 function calculateAreaOfCircle(radius) {
   return Math.PI * Math.pow(radius, 2);
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+## **YAGNI**
+
+YAGNI - "You Ain't Gonna Need It". এই principle code এ unnecessary functionalities add না করার ব্যাপার এ emphasize করে। এটা achieve করার কিছু way হলো:
+
+- এখন যে code টা দরকার, সেই code টা রাখা
+- যেই code এখন দরকার নাই, সেটা না রাখা
+- যখন new requirement আসবে, তখন code refactor করা
+- সকল possible future use case এর পূর্বানুমান না করা
+
+**❌**
+
+```javascript
+// Not YAGNI
+function calculateTaxes(price, taxRate) {
+  let taxes = price * taxRate;
+  return price + taxes;
+}
+```
+
+**✅**
+
+```javascript
+// YAGNI
+function calculateTax(price, taxRate) {
+  return price * taxRate;
 }
 ```
 
