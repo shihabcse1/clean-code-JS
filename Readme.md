@@ -2220,3 +2220,63 @@ const actions = function () {
 ```
 
 **[⬆ back to top](#table-of-contents)**
+
+## **DRY**
+
+DRY - Don't Repeat Youself. এই principle মূলত repetition reduce করে। এটা achieve করার কিছু way হলো: 
+
+- Common functionalities এর জন্য separate module করা। 
+- Repetitive value store এর জন্য variable use করা। 
+- Code copying and pasting avoid করা। 
+
+**❌**
+
+```javascript 
+// Not DRY
+function addNumbers(a, b){
+    console.log(a + b);
+}
+
+function subtractNumbers(a, b){
+    console.log(a - b);
+}
+```
+**✅**
+
+```javascript
+// DRY
+function calculateNumbers(a, b, operator){
+    if(operator === '+'){
+        console.log(a + b);
+    } else if (operator === '-'){
+        console.log(a - b);
+    }
+}
+```
+**✅**
+
+```javascript
+// More DRY
+function add(a, b) {
+    return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
+}
+
+function calculateNumbers(a, b, operator) {
+    let result;
+    if (operator === '+') {
+        result = add(a, b);
+    } else if (operator === '-') {
+        result = subtract(a, b);
+    } else {
+        throw new Error('Unsupported operator');
+    }
+    console.log(result);
+}
+
+```
+
+**[⬆ back to top](#table-of-contents)**
