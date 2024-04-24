@@ -1713,22 +1713,13 @@ inventoryTracker.requestItems();
 
 ## **Testing**
 
-Testing is more important than shipping. If you have no tests or an
-inadequate amount, then every time you ship code you won't be sure that you
-didn't break anything. Deciding on what constitutes an adequate amount is up
-to your team, but having 100% coverage (all statements and branches) is how
-you achieve very high confidence and developer peace of mind. This means that
-in addition to having a great testing framework, you also need to use a
+এটা mean করে program এ যদি কোনো ভুল থাকে তাহলে টা runtime এ successfully identified হয়েছে। এটা stack trace এর মাধ্যমে console এ function execution, killing the process (in Node) ইত্যাদি notify করে। This means that in addition to having a great testing framework, you also need to use a
 [good coverage tool](https://gotwarlost.github.io/istanbul/).
 
-There's no excuse to not write tests. There are [plenty of good JS test frameworks](https://jstherightway.org/#testing-tools), so find one that your team prefers.
-When you find one that works for your team, then aim to always write tests
-for every new feature/module you introduce. If your preferred method is
-Test Driven Development (TDD), that is great, but the main point is to just
-make sure you are reaching your coverage goals before launching any feature,
-or refactoring an existing one.
+test না লিখার কোনো excuse নাই। কিছু JS test framwork হলো: [plenty of good JS test frameworks](https://jstherightway.org/#testing-tools)। আমাদের উচিত প্রত্যেক new feature/module এর জন্য test লেখা।
+আপনি যদি Test Driven Development (TDD) prefer করেন, তাহলে ভালো, কিন্তু main point হচ্ছে you are reaching your coverage goals before launching any feature, or refactoring an existing one.
 
-### Single concept per test
+### 7.1 Single concept per test
 
 **❌**
 
@@ -1784,10 +1775,9 @@ describe("MomentJS", () => {
 
 ## **Concurrency**
 
-### Use Promises, not callbacks
+### 8.1 Use Promises, not callbacks
 
-Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
-Promises are a built-in global type. Use them!
+Callbacks আসলে clean না, এটা callback hell create করতে পারে। ES2015/ES6 Promises হচ্ছে build-in global type. 
 
 **❌**
 
@@ -1833,13 +1823,9 @@ get("https://en.wikipedia.org/wiki/Robert_Cecil_Martin")
 
 **[⬆ back to top](#table-of-contents)**
 
-### Async/Await are even cleaner than Promises
+### 8.2 Async/Await are even cleaner than Promises
 
-Promises are a very clean alternative to callbacks, but ES2017/ES8 brings async and await
-which offer an even cleaner solution. All you need is a function that is prefixed
-in an `async` keyword, and then you can write your logic imperatively without
-a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
-today!
+Promises এর চেয়েও বেশি cleaner solution হচ্ছে ES2017/ES8 এর `async` and `await`. 
 
 **❌**
 
