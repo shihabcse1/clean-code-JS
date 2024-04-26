@@ -774,10 +774,7 @@ class Cessna extends Airplane {
 
 ### 2.15 Avoid type-checking (part 1)
 
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+JavaScript is untyped, তার মানে একটা function যে কোনো type এর argument নিতে পারে।  মাঝে মাঝে এই freedom এর কাছে আপনি পরাজিত এবং এটা `type-checking` এর প্রলুব্ধ করে।  কিন্তু এটা avoid করার অনেক way আছে। 
 
 **❌**
 
@@ -803,15 +800,7 @@ function travelToTexas(vehicle) {
 
 ### 2.16 Avoid type-checking (part 2)
 
-If you are working with basic primitive values like strings and integers,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+Manually `type-checking` এর ক্ষেত্রে অসুবিধা হচ্ছে অনেক extra কাজ করা লাগতেছে এবং code readability নষ্ট করতেছে।  এই ক্ষেত্রে `TypeScript` একটা good alternative.
 
 **❌**
 
@@ -840,11 +829,9 @@ function combine(val1, val2) {
 
 ### 2.16 Don't over-optimize
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
+Modern browsers গুলো `runtime` এ অনেক optimization করে। অনেক সময় আপনি যে optimization করতেছেন, এটা just wasting time. [There are good
 resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+for seeing where optimization is lacking.
 
 **❌**
 
