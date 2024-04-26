@@ -721,14 +721,7 @@ if (isDOMNodePresent(node)) {
 
 ### 2.14 Avoid conditionals
 
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+এটা শুনে impossible task মনে হইতে পারে, যখন প্রথমবার শুনবেন - "how am I supposed to do anything without an `if` statement?". Ans হচ্ছে - অনেক ক্ষেত্রেই `polymorphism` এর মাধ্যমে এটা achieve করা যায়। তাহলে question হচ্ছে  "why would I want to do that?". Ans is - "A function should only do one thing"
 
 **❌**
 
