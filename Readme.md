@@ -548,41 +548,17 @@ console.log(newName); // ['Ryan', 'McDermott'];
 
 ### 2.9 Avoid Side Effects (part 2)
 
-In JavaScript, some values are unchangeable (immutable) and some are changeable
-(mutable). Objects and arrays are two kinds of mutable values so it's important
-to handle them carefully when they're passed as parameters to a function. A
-JavaScript function can change an object's properties or alter the contents of
-an array which could easily cause bugs elsewhere.
+In JavaScript, কিছু values unchangeable (immutable) এবং কিছু values changeable (mutable). `Objects` and `Arrays` হচ্ছে  mutable values, তাই যখন এদেরকে function এর parameters হিসেবে pass করা হয়, তখন carefully handle করতে হয়। একটা JavaScript function একটা object এর properties change or array এর contents alter করতে পারে, যার ফলে easily bugs produce হতে পারে। 
 
-Suppose there's a function that accepts an array parameter representing a
-shopping cart. If the function makes a change in that shopping cart array -
-by adding an item to purchase, for example - then any other function that
-uses that same `cart` array will be affected by this addition. That may be
-great, however it could also be bad. Let's imagine a bad situation:
+যেমনঃ নিচের example এ function টা যদি একটা `cart` array তে change করে, অন্যান্য যায়গায় যেখানে cart array use হচ্ছে সেটা affected হইতে পারে। 
 
-The user clicks the "Purchase" button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks an "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because the `cart` array was modified.
 
-A great solution would be for the `addItemToCart` function to always clone the
-`cart`, edit it, and return the clone. This would ensure that functions that are still
-using the old shopping cart wouldn't be affected by the changes.
 
-Two caveats to mention to this approach:
+সতর্কতা:
 
-1. There might be cases where you actually want to modify the input object,
-   but when you adopt this programming practice you will find that those cases
-   are pretty rare. Most things can be refactored to have no side effects!
-
-2. Cloning big objects can be very expensive in terms of performance. Luckily,
-   this isn't a big issue in practice because there are
-   [great libraries](https://facebook.github.io/immutable-js/) that allow
-   this kind of programming approach to be fast and not as memory intensive as
-   it would be for you to manually clone objects and arrays.
+1. Big objects clone করা performance এর ক্ষেত্রে very expensive হতে পারে।  কিন্ত এজন্য কিছু library আছে:
+   [great libraries](https://facebook.github.io/immutable-js/) যেটা manually array এবং object এর cloning এর মতো memory intensive নয়। 
+2. কিছু case এ আমাদের মূল array বা object এ change করা লাগতে পারে, কিন্তু এটা rare.
 
 **❌**
 
