@@ -868,9 +868,7 @@ for (let i = 0; i < list.length; i++) {
 
 ### 2.17 Remove dead code
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+যেমনঃ নিচের example এ আমরা oldRequestModule use করতেছি না, তাই এটা remove করে দেওয়াই ভালো। 
 
 **❌**
 
